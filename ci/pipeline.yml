@@ -5,6 +5,14 @@ resources:
     uri: https://github.com/bardec/flight-school
     branch: master
 
+- name: heroku-app
+  type: git
+  source:
+    uri: https://git.heroku.com/flight-school-fraud-tools.git
+    branch: master
+    username: ((heroku_username))
+    password: ((heroku_password))
+
 jobs:
 - name: test-app
   plan:
@@ -12,4 +20,4 @@ jobs:
     trigger: true
   - task: tests
     file: flight-school/build.yml
-
+  - put: heroku-app
