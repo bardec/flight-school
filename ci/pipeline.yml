@@ -8,10 +8,9 @@ resources:
 - name: heroku-app
   type: git
   source:
-    uri: https://git.heroku.com/flight-school-fraud-tools.git
+    uri: ssh://git@heroku.com/flight-school-fraud-tools.git
     branch: master
-    username: ((heroku_username))
-    password: ((heroku_password))
+    private_key: ((heroku_private_key))
 
 jobs:
 - name: test-app
@@ -21,3 +20,5 @@ jobs:
   - task: tests
     file: flight-school/build.yml
   - put: heroku-app
+    params:
+      repository: flight-school
